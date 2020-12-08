@@ -1,96 +1,109 @@
 //
-//  
 //
-//  Description: Star Search Array Version
+//
+//  Description: Prime Number Program
+//
 
 #include <iostream>
 #include <iomanip>
+#include <fstream>
+#include <string>
 using namespace std;
 
-void getJudgeData(double &);
-double lowestScore(double[], int);
-double highestScore(double[], int);
-void calcAvg(double[], int);
+int isPrime(int &, int &);
 
 int main()
 {
-    const int SIZE = 7;
-    static double score[SIZE];
+    ofstream outputFile;
+    string fileName;                //  /Users/warrenwright/Desktop/PrimeNumberOutPut.txt
+    
+    int beginningNumber;
+    int endingNumber;
+    int checkNumber;
+    int primeNumber;
+    int numberSwap;
     int x;
-
-    for (x = 1; x<=SIZE; x++)
-    {
-        getJudgeData(score[x]);
-    }
+    
+    
+    
+    cout<< "What is the beginning number in the range?: ";
+    cin>> beginningNumber;
     cout<< endl;
-    calcAvg(score, SIZE);
+    cout<< "What is the ending number in the range?: ";
+    cin>> endingNumber;
+    cout<< endl;
+    
+    cin.ignore();
+    cout<< "Enter the file name for report output?: " << endl;
+    getline(cin,fileName);
+    outputFile.open(fileName);
+    
+    while (!outputFile)
+    {
+        cout<< "File not found." << endl;
+        cout<< "Please enter file name for report output: " << endl;
+        getline(cin,fileName);
+        outputFile.open(fileName);
+    }
+    
+    outputFile << "These are the Prime Numbers between " << beginningNumber << " and " << endingNumber << "." << endl;
+    
+    if (beginningNumber > endingNumber)
+    {
+        numberSwap = beginningNumber;
+        beginningNumber = endingNumber;
+        endingNumber = numberSwap;
+    }
+    else if (beginningNumber == endingNumber)
+    {
+        cout<< "This is not a range. Please enter beginning number: ";
+        cin>> beginningNumber;
+        cout<< "Please enter ending number: ";
+        cin>> endingNumber;
+        cout<< endl;
+    }
+    else
+    {
+        beginningNumber = beginningNumber;
+        endingNumber = endingNumber;
+    }
+    
+    for (checkNumber = beginningNumber; checkNumber <= endingNumber; checkNumber++)
+    {
+        isPrime(checkNumber, x);
+        if (x == 1)
+        {
+            primeNumber = checkNumber;
+            outputFile<< primeNumber << endl;
+        }
+    }
+    
+    outputFile.close();
     cout<< endl;
     return 0;
 }
 
-void getJudgeData(double & score)
+int isPrime(int & checkNumber, int & x)
 {
-    double judgeScore;
-    static int judgeNumber = 1;
-    cout<< "Enter the Score from Judge #" << judgeNumber << ": ";
-    cin>> judgeScore;
-    
-    while ((judgeScore<0) || (judgeScore>10))
+    if ((checkNumber <=3))
     {
-        cout<< "Error. Score must between 0 and 10." << endl;
-        cout<< "Enter the Score from Judge #" << judgeNumber << ": ";
-        cin>> judgeScore;
+        x = 1;
     }
-    score = judgeScore;
-    judgeNumber++;
-}
-
-double lowestScore(double score[], int SIZE)
-{
-    double min = score[1];
-    int spot = 0;
-    for (int x = 1; x <= SIZE; x++)
+    else if ((checkNumber % 2 != 0) && (checkNumber % 3 != 0) && (checkNumber <= 5))
     {
-        if (min > score[x])
-        {
-            min = score[x];
-            spot = x;
-        }
+        x = 1;
     }
-    return min;
-}
-
-double highestScore(double score[], int SIZE)
-{
-    double max = score[1];
-    int spot = 1;
-    for (int x = 1; x <= SIZE; x++)
+    else if ((checkNumber % 2 != 0) && (checkNumber % 3 != 0) && (checkNumber % 5 != 0) && (checkNumber <= 7))
     {
-        if (max < score[x])
-        {
-            max = score[x];
-            spot = x;
-        }
+        x = 1;
     }
-    return max;
-}
-
-void calcAvg(double score[], int SIZE)
-{
-    int numberOfVotes = SIZE - 2;
-    double sum = 0;
-    double average;
-    double lowScore = lowestScore(score, SIZE);
-    double highScore = highestScore(score, SIZE);
-    
-    for (int x =1; x<= SIZE; x++)
+    else if ((checkNumber % 2 != 0) && (checkNumber % 3 != 0) && (checkNumber % 5 != 0) && (checkNumber % 7 != 0) && (checkNumber > 8))
     {
-        sum += score[x];
+        x = 1;
     }
-    
-    cout<< "The lowest score is: " << lowScore << endl;
-    cout<< "The highest score is: " << highScore << endl;
-    
-    average = ((sum - (highScore + lowScore)) / numberOfVotes);
-    cout<< "The average score is: " << setprecision(2) << fixed << average << endl;
+    else
+    {
+        x = 0;
+    }
+    return x;
 }
