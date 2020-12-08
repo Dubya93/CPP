@@ -1,96 +1,84 @@
 //
 //  
 //
-//  Description: Star Search Array Version
+//  Description: Software Sales
+//
 
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
-void getJudgeData(double &);
-double lowestScore(double[], int);
-double highestScore(double[], int);
-void calcAvg(double[], int);
-
 int main()
 {
-    const int SIZE = 7;
-    static double score[SIZE];
-    int x;
-
-    for (x = 1; x<=SIZE; x++)
-    {
-        getJudgeData(score[x]);
-    }
-    cout<< endl;
-    calcAvg(score, SIZE);
+    // declare variables
+    int numberOfUnitsSold;
+    const int packagePrice = 99;
+    double discountRaw;
+    double discountPercent;
+    double discountAmount;
+    double regularPrice;
+    double netPrice;
+    
+    // ask user for number of units sold
+        cout<< "How many units sold?" << endl;
+        cin>> numberOfUnitsSold;
+    
+    // if statements to determine what discount the customer recieves
+        if ( numberOfUnitsSold < 10 )
+        {
+            discountRaw = 0;
+            discountPercent = discountRaw / 100;
+            regularPrice = numberOfUnitsSold * packagePrice;
+            discountAmount = regularPrice * discountPercent;
+            netPrice = regularPrice - discountAmount;
+        }
+        else if ( numberOfUnitsSold >= 10 && numberOfUnitsSold < 20 )
+        {
+            discountRaw = 20;
+            discountPercent = discountRaw / 100;
+            regularPrice = numberOfUnitsSold * packagePrice;
+            discountAmount = regularPrice * discountPercent;
+            netPrice = regularPrice - discountAmount;
+        }
+        else if ( numberOfUnitsSold >= 20 && numberOfUnitsSold < 50 )
+        {
+            discountRaw = 30;
+            discountPercent = discountRaw / 100;
+            regularPrice = numberOfUnitsSold * packagePrice;
+            discountAmount = regularPrice * discountPercent;
+            netPrice = regularPrice - discountAmount;
+        }
+        else if ( numberOfUnitsSold >= 50 && numberOfUnitsSold < 100 )
+        {
+            discountRaw = 40;
+            discountPercent = discountRaw / 100;
+            regularPrice = numberOfUnitsSold * packagePrice;
+            discountAmount = regularPrice * discountPercent;
+            netPrice = regularPrice - discountAmount;
+        }
+        else if ( numberOfUnitsSold >= 100)
+        {
+            discountRaw = 50;
+            discountPercent = discountRaw / 100;
+            regularPrice = numberOfUnitsSold * packagePrice;
+            discountAmount = regularPrice * discountPercent;
+            netPrice = regularPrice - discountAmount;
+        }
+        else
+        {
+            discountRaw = 0;
+            discountPercent = discountRaw / 100;
+            regularPrice = numberOfUnitsSold * packagePrice;
+            discountAmount = regularPrice * discountPercent;
+            netPrice = regularPrice - discountAmount;
+        }
+                
+    // output
+        cout<< "Software Sales:" << endl;
+        cout<< "Regular Price of " << numberOfUnitsSold << ":   " << setprecision(2) << fixed << setw(8) << right << regularPrice << endl;
+        cout<< "Discounted " << setprecision(0) << fixed << setw(2)<< discountRaw << "%:         " << setprecision(2) << fixed << setw(7) << right << discountAmount << endl;
+        cout<< "Net Price:             " << setprecision(2) << fixed << setw(8) << right << netPrice << endl;
+    
     cout<< endl;
     return 0;
-}
-
-void getJudgeData(double & score)
-{
-    double judgeScore;
-    static int judgeNumber = 1;
-    cout<< "Enter the Score from Judge #" << judgeNumber << ": ";
-    cin>> judgeScore;
-    
-    while ((judgeScore<0) || (judgeScore>10))
-    {
-        cout<< "Error. Score must between 0 and 10." << endl;
-        cout<< "Enter the Score from Judge #" << judgeNumber << ": ";
-        cin>> judgeScore;
-    }
-    score = judgeScore;
-    judgeNumber++;
-}
-
-double lowestScore(double score[], int SIZE)
-{
-    double min = score[1];
-    int spot = 0;
-    for (int x = 1; x <= SIZE; x++)
-    {
-        if (min > score[x])
-        {
-            min = score[x];
-            spot = x;
-        }
-    }
-    return min;
-}
-
-double highestScore(double score[], int SIZE)
-{
-    double max = score[1];
-    int spot = 1;
-    for (int x = 1; x <= SIZE; x++)
-    {
-        if (max < score[x])
-        {
-            max = score[x];
-            spot = x;
-        }
-    }
-    return max;
-}
-
-void calcAvg(double score[], int SIZE)
-{
-    int numberOfVotes = SIZE - 2;
-    double sum = 0;
-    double average;
-    double lowScore = lowestScore(score, SIZE);
-    double highScore = highestScore(score, SIZE);
-    
-    for (int x =1; x<= SIZE; x++)
-    {
-        sum += score[x];
-    }
-    
-    cout<< "The lowest score is: " << lowScore << endl;
-    cout<< "The highest score is: " << highScore << endl;
-    
-    average = ((sum - (highScore + lowScore)) / numberOfVotes);
-    cout<< "The average score is: " << setprecision(2) << fixed << average << endl;
 }
