@@ -15,7 +15,7 @@ int isPrime(int &, int &);
 int main()
 {
     ofstream outputFile;
-    string fileName;                //  /Users/warrenwright/Desktop/PrimeNumberOutPut.txt
+    string fileName;                //
     
     int beginningNumber;
     int endingNumber;
