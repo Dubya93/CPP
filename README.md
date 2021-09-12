@@ -1,4 +1,3 @@
 # C++
-Random Assortment
 
-// Mainly C++ work. 
+Just some C++ programs I have written
