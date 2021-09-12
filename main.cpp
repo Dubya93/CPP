@@ -1,6 +1,5 @@
 //
-//  Warren Wright
-//  CS1143 Section 5
+//  
 //  Description: String Reverse
 //
 
