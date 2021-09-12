@@ -1,5 +1,5 @@
-//  Warren Wright
-//  CS 1143 Section 5
+// 
+// 
 //  Description: Lowest Score Drop
 
 #include <iostream>
