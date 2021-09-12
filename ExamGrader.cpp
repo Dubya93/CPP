@@ -1,6 +1,4 @@
 //
-//  Warren Wright
-//  CS 1143 Section 5
 //  Description: Exam Grader
 //
 
@@ -11,8 +9,8 @@
 using namespace std;
 
 
-void getCorrectAnswers(char [], int);                               //  /Users/warrenwright/Desktop/CorrectAnswers.txt
-void getStudentAnswers(char[], int);                               //  /Users/warrenwright/Desktop/StudentAnswers.txt
+void getCorrectAnswers(char [], int);                               //  FilePath here
+void getStudentAnswers(char[], int);                               //  FilePath here
 void missedQuestions(char [], char [], int, double, double&);
 void calcGrade(double&, int);
 
